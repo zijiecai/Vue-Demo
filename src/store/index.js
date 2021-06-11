@@ -1,15 +1,40 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+import getters from './getters';
+import mutations from './mutations';
 
-export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
+Vue.use(Vuex);
+
+// 菜单选项标题
+const MENUS_TITLE = [
+  'welfare',
+  'recommend',
+  'android',
+  'ios',
+  'web'
+]
+
+// 创建一个对象state来保存应用启动周期的变量状态
+const state = {
+  // 头部标题
+  headerTitle: '福利',
+  // 菜单选项
+  menus: MENUS_TITLE,
+  // 控制菜单显示
+  menuShow: false,
+  // 控制加载动画显示
+  loadingShow: false,
+  // 消息数
+  news: 5
+}
+
+// 创建Store对象
+const store = new Vuex.Store({
+  state,
+  getters,
+  mutations
 })
+
+// 挂载Vue实例上
+export default store;
