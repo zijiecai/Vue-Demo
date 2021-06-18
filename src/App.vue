@@ -1,12 +1,6 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/welfare">Welfare</router-link>
-    </div> -->
-    <div>
-      <router-view />
-    </div>
+    <router-view />
   </div>
 </template>
 
@@ -21,4 +15,14 @@ export default {
 };
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+#app
+  font-family 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  color #2c3e50
+  width 100%
+  padding-top 56px
+#app .show
+  transform translateX(250px)
+</style>

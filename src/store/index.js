@@ -8,11 +8,31 @@ Vue.use(Vuex);
 
 // 菜单选项标题
 const MENUS_TITLE = [
-  'welfare',
-  'recommend',
-  'android',
-  'ios',
-  'web'
+  {
+    title: 'welfare',
+    name: '福利'
+  },
+  {
+    title: 'recommend',
+    name: '推荐'
+  },
+  {
+    title: 'android',
+    name: '安卓'
+  },
+  {
+    title: 'ios',
+    name: 'IOS'
+  },
+  {
+    title: 'web',
+    name: '前端'
+  },
+  // 'welfare',
+  // 'recommend',
+  // 'android',
+  // 'ios',
+  // 'web'
 ]
 
 // 创建一个对象state来保存应用启动周期的变量状态

@@ -46,7 +46,9 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  // 路由切换激活样式
+  linkActiveClass: 'active'
 })
 
 export default router
