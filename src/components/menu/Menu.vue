@@ -14,7 +14,11 @@
         </div>
       </div>
       <div class="menu-theme">
-        <div v-for="menu in menus" :key="menu.title">
+        <div
+          v-for="menu in menus"
+          :key="menu.title"
+          @click="updateTitle(menu.name, menu.title)"
+        >
           <router-link class="iconfont item" :to="menu.title">
             <div class="menu-icon">
               <i class="iconfont" :class="'icon-' + menu.title"></i>
@@ -54,104 +58,18 @@ export default {
     // 跳转我的github地址
     toGithub() {
       window.open(user.githubAddress);
+    },
+    // 更新头部标题
+    updateTitle(name, title) {
+      this.$store.commit('update_title', name);
+      this.$store.commit('update_menuShow');
+      if (title === 'day') {
+        this.$store.commit('update_news');
+      }
     }
   }
 };
 </script>
 <style lang="stylus" scoped>
-@import '../../common/css/index'
-
-.menu
-  .menu-list
-    position fixed
-    top 0
-    bottom 0
-    flex 0 0 250px
-    left -250px
-    width 250px
-    background-color #22262a
-    color #313131
-    transition all 0.3s ease
-    z-index 99
-    .menu-info
-      width 100%
-      height 220px
-      background-color #262d30
-      .menu-avatar
-        width 40%
-        border-radius 50%
-        margin 20px 75px
-      .menu-user
-        font-size 18px
-        color #fff
-        text-align center
-        .menu-option
-          line-height 34px
-        .user-nickname
-          font-weight 600
-        .user-github
-          text-decoration underline
-          cursor pointer
-          &:hover
-            color #cd84f1
-    &.menu-show
-      transform translateX(250px)
-    .menu-theme
-      margin 0
-      padding 0
-      overflow hidden
-      .item
-        display block
-        font-size 16px
-        padding 10px
-        text-align left
-        text-indent 1px
-        line-height 15px
-        color #a6adb3
-        font-weight 700
-        border-1px(#40474a)
-        &last-child
-          margin-bottom 50px
-        &before
-          color #2c3e50
-        .menu-icon
-          display inline-block
-          width 34px
-          height 34px
-          background-color #383c40
-          border-radius 50%
-          vertical-align top
-          text-align center
-          .iconfont
-            color #808e9b
-            border-radius 50%
-            font-size 22px
-            line-height 34px
-        &.active
-          color #a55eea
-          .menu-icon
-            background-color #a55eea
-            .iconfont
-              color #fff
-        .menu-text
-          display inline-block
-          font-size 16px
-          line-height 34px
-          vertical-align top
-          margin-left 10px
-          font-weight 700
-        .menu-new
-          display inline-block
-          width 30px
-          height 30px
-          background-color #d81229
-          border-radius 50%
-          vertical-align top
-          text-align center
-          float right
-          span
-            color #fff
-            font-size 16px
-            line-height 30px
-            font-weight 500
+@import './menu'
 </style>

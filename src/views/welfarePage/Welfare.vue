@@ -1,13 +1,97 @@
 <template>
-  <div>福利页</div>
+  <div
+    class="welfare-wrapper"
+    v-infinite-scroll="loadMore"
+    infinite-scroll-disabled="busy"
+    infinite-scroll-distance="10"
+  >
+    <div class="welfare-center">
+      <figure
+        v-show="leftData.length > 0"
+        v-for="(data, index) in leftData"
+        :key="index"
+      >
+        <LazyloadImg :imgUrl="data.url"></LazyloadImg>
+      </figure>
+    </div>
+    <div class="welfare-center">
+      <figure
+        v-show="rightData.length > 0"
+        v-for="(data, index) in rightData"
+        :key="index"
+      >
+        <LazyloadImg :imgUrl="data.url"></LazyloadImg>
+      </figure>
+    </div>
+  </div>
 </template>
 <script>
+import LazyloadImg from '../../components/lazyloadImg/LazyloadImg.vue';
+import { getWelfareData } from '../../network/welfare';
+
 export default {
   name: 'Welfare',
   data() {
-    return {};
+    return {
+      leftData: [],
+      rightData: [],
+      busy: false,
+      page: 1,
+      detailData: {},
+      time: ''
+    };
   },
-  methods: {}
+  components: {
+    LazyloadImg
+  },
+  methods: {
+    // 加载更多
+    loadMore() {
+      this.busy = true;
+      this.loadTop();
+      this.page++;
+    },
+    // 加载数据
+    loadTop() {
+      this.$store.commit('update_loadingShow', true);
+      this.page = 4;
+      getWelfareData(this.page).then((res) => {
+        console.log(res);
+        let left = res.results.filter((data, i) => {
+          return (i + 1) % 2 === 1;
+        });
+        let right = res.results.filter((data, i) => {
+          return (i + 1) % 2 !== 1;
+        });
+        this.leftData = this.leftData.concat(left);
+        this.rightData = this.rightData.concat(right);
+        this.busy = false;
+        this.$nextTick(() => {
+          this.$store.commit('update_loadingShow', false);
+        });
+      });
+    }
+  }
 };
 </script>
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.welfare-wrapper
+  display flex
+  .welfare-center
+    width 50%
+    column-width 200px
+    column-gap 15px
+    max-width 1100px
+    figure
+      width 95%
+      background #fefefe
+      border 4px solid #ffb8b8
+      box-shadow 5px 6px 8px rgba(34, 25, 25, 0.4)
+      margin 0 2px 15px
+      display inline-block
+      column-break-inside avoid
+      z-index 11
+      img
+        width 100%
+        height auto
+</style>
