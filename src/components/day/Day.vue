@@ -16,6 +16,19 @@ export default {
     return {
       content: false
     };
+  },
+  created() {
+    this.clearStyle();
+  },
+  methods: {
+    clearStyle() {
+      this.$nextTick(() => {
+        let tags = this.$el.getElementsByTagName('img');
+        for (let i = 0; i < tags.length; i++) {
+          tags[i].removeAttribute('style');
+        }
+      });
+    }
   }
 };
 </script>

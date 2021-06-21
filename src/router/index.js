@@ -9,6 +9,7 @@ const routes = [
     // 首页
     path: '/',
     name: 'home',
+    redirect: '/welfare',
     component: Home,
     children: [
       {

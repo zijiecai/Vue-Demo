@@ -10,6 +10,7 @@
         v-show="leftData.length > 0"
         v-for="(data, index) in leftData"
         :key="index"
+        @click="selectDetail"
       >
         <LazyloadImg :imgUrl="data.url"></LazyloadImg>
       </figure>
@@ -19,15 +20,18 @@
         v-show="rightData.length > 0"
         v-for="(data, index) in rightData"
         :key="index"
+        @click="selectDetail"
       >
         <LazyloadImg :imgUrl="data.url"></LazyloadImg>
       </figure>
     </div>
+    <Detail ref="detail" :detailData="detailData"></Detail>
   </div>
 </template>
 <script>
 import LazyloadImg from '../../components/lazyloadImg/LazyloadImg.vue';
-import { getWelfareData } from '../../network/welfare';
+import Detail from '../../components/detail/Detail';
+import { getWelfareData, getDetailData } from '../../network/welfare';
 
 export default {
   name: 'Welfare',
@@ -42,7 +46,8 @@ export default {
     };
   },
   components: {
-    LazyloadImg
+    LazyloadImg,
+    Detail
   },
   methods: {
     // 加载更多
@@ -66,6 +71,18 @@ export default {
         this.leftData = this.leftData.concat(left);
         this.rightData = this.rightData.concat(right);
         this.busy = false;
+        this.$nextTick(() => {
+          this.$store.commit('update_loadingShow', false);
+        });
+      });
+    },
+    // 获取图片对应的详情数据
+    selectDetail() {
+      this.$store.commit('update_loadingShow', true);
+      getDetailData().then((res) => {
+        console.log(res);
+        this.detailData = res.results[0];
+        this.$refs.detail.show();
         this.$nextTick(() => {
           this.$store.commit('update_loadingShow', false);
         });
