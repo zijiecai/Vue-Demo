@@ -10,7 +10,7 @@
       <div class="icon-left">
         <span class="iconfont icon-menu01-01"></span>
       </div>
-      <div class="title">{{ getHeaderTitle }}</div>
+      <div class="title">{{ getTitle }}</div>
     </div>
     <Menu :isShow="menuShow"></Menu>
   </div>
@@ -25,8 +25,16 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(['menuShow']),
-    ...mapGetters(['getHeaderTitle'])
+    ...mapState(['menus', 'menuShow']),
+    ...mapGetters(['getHeaderTitle']),
+    // 获取标题文字 -> 根据路由，实现实时切换与刷新的标题更新
+    // 不使用vuex，解决页面刷新造成的状态丢失
+    getTitle() {
+      const menus = this.menus;
+      return menus.find((menu) => {
+        return menu.title === this.$route.name;
+      }).name;
+    }
   },
   methods: {
     // 左侧菜单显示切换处理函数

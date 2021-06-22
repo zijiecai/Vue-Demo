@@ -1,13 +1,14 @@
 <template>
-  <div>安卓博文页</div>
+  <List :type="'Android'"></List>
 </template>
 <script>
+import List from '../../components/list/List.vue';
+
 export default {
   name: 'Android',
-  data() {
-    return {};
-  },
-  methods: {}
+  components: {
+    List
+  }
 };
 </script>
 <style lang="stylus" scoped></style>

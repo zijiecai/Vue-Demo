@@ -24,7 +24,10 @@
               <i class="iconfont" :class="'icon-' + menu.title"></i>
             </div>
             <span class="menu-text">{{ menu.name }}</span>
-            <div class="menu-new" v-show="menu.title === 'day' && news > 0">
+            <div
+              class="menu-new"
+              v-show="menu.title === 'recommend' && news > 0"
+            >
               <span>6</span>
             </div>
           </router-link>
@@ -48,7 +51,8 @@ export default {
     return {
       avatar:
         'https://7975-yuncloud-123-1301997245.tcb.qcloud.la/issueUserImage/pkq.jpg?sign=7b69e757c0a8e2178483e9f2beb65291&t=1623830950',
-      user
+      user,
+      title: ''
     };
   },
   computed: {
@@ -63,7 +67,7 @@ export default {
     updateTitle(name, title) {
       this.$store.commit('update_title', name);
       this.$store.commit('update_menuShow');
-      if (title === 'day') {
+      if (title === 'recommend') {
         this.$store.commit('update_news');
       }
     }

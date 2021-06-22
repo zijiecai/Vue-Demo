@@ -15,31 +15,31 @@ const routes = [
       {
         // 福利页
         path: '/welfare',
-        name: 'Welfare',
+        name: 'welfare',
         component: () => import('../views/welfarePage/Welfare.vue')
       },
       {
         // 每日推荐页
         path: '/recommend',
-        name: 'Recommend',
+        name: 'recommend',
         component: () => import('../views/recommendPage/Recommend.vue')
       },
       {
         // Android博文页
         path: '/android',
-        name: 'Android',
+        name: 'android',
         component: () => import('../views/androidPage/Android.vue')
       },
       {
         // iOS博文页
         path: '/ios',
-        name: 'Ios',
+        name: 'ios',
         component: () => import('../views/iosPage/Ios.vue')
       },
       {
         // 前端博文页
         path: '/web',
-        name: 'Web',
+        name: 'web',
         component: () => import('../views/webPage/Web.vue')
       }
     ]
