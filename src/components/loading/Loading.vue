@@ -14,12 +14,6 @@ export default {
     isLoadingShow: {
       type: Boolean
     }
-  },
-  data() {
-    return {};
-  },
-  created() {
-    console.log(112321);
   }
 };
 </script>

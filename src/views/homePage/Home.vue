@@ -1,14 +1,6 @@
 <template>
   <div>
-    <!-- <h2>首页</h2> -->
     <Header></Header>
-    <!-- <div>{{ getHeaderTitle }}</div>
-    <div>{{ getMenus }}</div>
-    <div>{{ getMenuShow }}</div>
-    <div>{{ getLoadingShow }}</div>
-    <div>{{ getNews }}</div>
-    <button @click="btnClick">触发事件</button> -->
-
     <router-view />
   </div>
 </template>
@@ -19,9 +11,6 @@ import { mapGetters, mapMutations } from 'vuex';
 
 export default {
   name: 'Home',
-  data() {
-    return {};
-  },
   computed: {
     ...mapGetters([
       'getHeaderTitle',
@@ -36,14 +25,6 @@ export default {
       'update_loadingShow',
       'update_news'
     ])
-  },
-  methods: {
-    // btnClick() {
-    //   this.$store.commit('update_title', '皮卡丘');
-    //   this.$store.commit('update_menuShow');
-    //   this.$store.commit('update_loadingShow');
-    //   this.$store.commit('update_news');
-    // }
   },
   components: {
     Header

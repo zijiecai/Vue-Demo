@@ -63,39 +63,5 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-.detail
-  position fixed
-  top 0
-  left 0
-  right 0
-  z-index 30
-  width 100%
-  height 100%
-  background-color #fff
-  &.fade-enter-active, &.fade-leave-active
-    transition all 0.3s linear
-    transform translate3d(0, 0, 0)
-  &.fade-enter, &.fade-leave-active
-    opacity 0
-    transform translate3d(100%, 0, 0)
-  .header
-    min-height 50px
-    padding 0 38px 0 20px
-    line-height 50px
-    color #fff
-    font-size 18px
-    background-color #cd84f1
-    text-align center
-    .back
-      cursor pointer
-      line-height 50px
-      float left !important
-      .iconfont
-        font-size 22px
-    .title
-      font-size 20px
-      font-weight 600
-      align-items center
-  .day
-    padding 10px 20px
+@import './Detail'
 </style>

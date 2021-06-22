@@ -21,9 +21,6 @@ import Menu from '../menu/Menu.vue';
 
 export default {
   name: 'Header',
-  data() {
-    return {};
-  },
   computed: {
     ...mapState(['menus', 'menuShow']),
     ...mapGetters(['getHeaderTitle']),
@@ -48,5 +45,5 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
-@import './head'
+@import './header'
 </style>
