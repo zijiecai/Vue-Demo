@@ -8,11 +8,13 @@
     <div>{{ getLoadingShow }}</div>
     <div>{{ getNews }}</div>
     <button @click="btnClick">触发事件</button> -->
+
     <router-view />
   </div>
 </template>
 <script>
 import Header from '../../components/header/Header.vue';
+
 import { mapGetters, mapMutations } from 'vuex';
 
 export default {

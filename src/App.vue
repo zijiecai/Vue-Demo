@@ -1,17 +1,23 @@
 <template>
   <div id="app">
+    <Loading :isLoadingShow="getLoadingShow"></Loading>
     <router-view />
   </div>
 </template>
 
 <script>
 import Home from './views/homePage/Home.vue';
+import Loading from './components/loading/Loading.vue';
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
     return {};
   },
-  components: { Home }
+  computed: {
+    ...mapGetters(['getLoadingShow'])
+  },
+  components: { Home, Loading }
 };
 </script>
 
